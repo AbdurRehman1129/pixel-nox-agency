@@ -1,8 +1,13 @@
 export interface SocialLink {
   platform: string;
   url: string;
-  /** lucide-react icon component name */
-  icon: string;
+  /**
+   * Short badge label (2 chars max) shown in the footer.
+   * lucide-react's current major version dropped all brand/logo icons
+   * (GitHub, Twitter/X, LinkedIn, Instagram, etc.), so social links use a
+   * plain monogram badge instead of an icon component.
+   */
+  badge: string;
 }
 
 export interface SiteConfig {
@@ -25,10 +30,10 @@ export const siteConfig: SiteConfig = {
   phone: "+1 (555) 010-2049",
   address: "148 Foundry Street, Suite 4B, Austin, TX 78701",
   social: [
-    { platform: "LinkedIn", url: "https://linkedin.com/company/pixel-nox", icon: "Linkedin" },
-    { platform: "X", url: "https://x.com/pixelnox", icon: "Twitter" },
-    { platform: "GitHub", url: "https://github.com/pixel-nox", icon: "Github" },
-    { platform: "Instagram", url: "https://instagram.com/pixelnox", icon: "Instagram" },
+    { platform: "LinkedIn", url: "https://linkedin.com/company/pixel-nox", badge: "in" },
+    { platform: "X", url: "https://x.com/pixelnox", badge: "X" },
+    { platform: "GitHub", url: "https://github.com/pixel-nox", badge: "GH" },
+    { platform: "Instagram", url: "https://instagram.com/pixelnox", badge: "IG" },
   ],
   footerCopyright: "Pixel Nox. All rights reserved.",
 };
