@@ -1,23 +1,22 @@
 import Link from "next/link";
+import { Mail, MapPin, Phone } from "lucide-react";
 import {
-  Facebook,
-  Github,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Twitter,
-  type LucideIcon,
-} from "lucide-react";
+  FacebookIcon,
+  GithubIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  TwitterIcon,
+} from "@/components/icons/SocialIcons";
 import { siteConfig, type SocialIcon } from "@/data/siteConfig";
 
-const iconMap: Record<SocialIcon, LucideIcon> = {
-  linkedin: Linkedin,
-  twitter: Twitter,
-  github: Github,
-  instagram: Instagram,
-  facebook: Facebook,
+// lucide-react v1 dropped all brand/logo icons, so social icons are
+// small local SVGs (see components/icons/SocialIcons.tsx) instead.
+const iconMap: Record<SocialIcon, (props: { size?: number }) => React.ReactElement> = {
+  linkedin: LinkedinIcon,
+  twitter: TwitterIcon,
+  github: GithubIcon,
+  instagram: InstagramIcon,
+  facebook: FacebookIcon,
 };
 
 const legalLinks = [
