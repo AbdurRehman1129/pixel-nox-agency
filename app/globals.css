@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------
+   Pixel Nox — Design Tokens
+   Concept: "Pixel" (precision / grid / digital) + "Nox" (night)
+   Ink-dark base, cobalt precision accent, violet depth,
+   gold used sparingly for highlights.
+--------------------------------------------------------- */
+
+:root {
+  /* Base surfaces */
+  --color-ink-950: #05070A;
+  --color-ink-900: #0A0C10;
+  --color-ink-800: #12151C;
+  --color-ink-700: #1B1F27;
+  --color-ink-600: #262B35;
+
+  /* Foreground */
+  --color-mist-100: #F4F5F7;
+  --color-mist-300: #C7CAD3;
+  --color-mist-500: #8A8F9C;
+
+  /* Accents */
+  --color-signal-400: #6E97FF;
+  --color-signal-500: #4C7EFF;
+  --color-signal-600: #3A63D6;
+
+  --color-nox-500: #7C5CFC;
+  --color-nox-600: #6845E0;
+
+  --color-gold-400: #F2C14E;
+
+  --color-success-500: #33C481;
+  --color-error-500: #EF5B5B;
+
+  --font-display: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+@theme inline {
+  --color-ink-950: var(--color-ink-950);
+  --color-ink-900: var(--color-ink-900);
+  --color-ink-800: var(--color-ink-800);
+  --color-ink-700: var(--color-ink-700);
+  --color-ink-600: var(--color-ink-600);
+
+  --color-mist-100: var(--color-mist-100);
+  --color-mist-300: var(--color-mist-300);
+  --color-mist-500: var(--color-mist-500);
+
+  --color-signal-400: var(--color-signal-400);
+  --color-signal-500: var(--color-signal-500);
+  --color-signal-600: var(--color-signal-600);
+
+  --color-nox-500: var(--color-nox-500);
+  --color-nox-600: var(--color-nox-600);
+
+  --color-gold-400: var(--color-gold-400);
+
+  --color-success-500: var(--color-success-500);
+  --color-error-500: var(--color-error-500);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  border-color: var(--color-ink-600);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink-900);
+  color: var(--color-mist-100);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal-400);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Signature: subtle pixel/dot-grid texture, used behind hero */
+.pixel-grid-bg {
+  background-image: radial-gradient(var(--color-ink-600) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
