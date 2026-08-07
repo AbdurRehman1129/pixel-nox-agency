@@ -1,73 +1,52 @@
 @import "tailwindcss";
 
-/* ---------------------------------------------------------
-   Pixel Nox — Design Tokens
-   Concept: "Pixel" (precision / grid / digital) + "Nox" (night)
-   Ink-dark base, cobalt precision accent, violet depth,
-   gold used sparingly for highlights.
---------------------------------------------------------- */
+/*
+ * Pixel Nox design tokens.
+ * Tailwind v4 reads custom theme values straight from this @theme block —
+ * this project has no tailwind.config.ts, so this file IS the config.
+ * Each --color-*, --font-*, and --radius-* var below becomes a utility
+ * class automatically, e.g. --color-signal-500 -> bg-signal-500 / text-signal-500.
+ *
+ * Palette: "Ink & Signal" — a dark, engineering-led palette instead of a
+ * generic SaaS gradient. Ink = near-black neutrals for depth, Signal = a
+ * confident indigo-blue for primary actions, Circuit = a teal accent for
+ * highlights/links, Mist = light neutrals for text on dark surfaces.
+ */
+@theme {
+  /* Ink — dark neutrals / surfaces */
+  --color-ink-950: #05070d;
+  --color-ink-900: #0b0f1a;
+  --color-ink-800: #141a2b;
+  --color-ink-700: #1f273c;
 
-:root {
-  /* Base surfaces */
-  --color-ink-950: #05070A;
-  --color-ink-900: #0A0C10;
-  --color-ink-800: #12151C;
-  --color-ink-700: #1B1F27;
-  --color-ink-600: #262B35;
+  /* Signal — primary brand blue */
+  --color-signal-500: #3d5afe;
+  --color-signal-400: #6b82ff;
+  --color-signal-300: #9aabff;
 
-  /* Foreground */
-  --color-mist-100: #F4F5F7;
-  --color-mist-300: #C7CAD3;
-  --color-mist-500: #8A8F9C;
+  /* Circuit — accent teal (links, highlights, focus) */
+  --color-circuit-500: #00d4b5;
+  --color-circuit-400: #3ee6cb;
 
-  /* Accents */
-  --color-signal-400: #6E97FF;
-  --color-signal-500: #4C7EFF;
-  --color-signal-600: #3A63D6;
+  /* Mist — light neutrals for text on dark surfaces */
+  --color-mist-100: #f4f6fb;
+  --color-mist-300: #cbd5e1;
+  --color-mist-400: #94a3b8;
+  --color-mist-600: #64748b;
 
-  --color-nox-500: #7C5CFC;
-  --color-nox-600: #6845E0;
+  /* Fonts — wired to next/font variables set in app/layout.tsx */
+  --font-display: var(--font-space-grotesk), "Segoe UI", sans-serif;
+  --font-body: var(--font-inter), "Segoe UI", sans-serif;
 
-  --color-gold-400: #F2C14E;
-
-  --color-success-500: #33C481;
-  --color-error-500: #EF5B5B;
-
-  --font-display: var(--font-space-grotesk);
-  --font-body: var(--font-inter);
-  --font-mono: var(--font-ibm-plex-mono);
-}
-
-@theme inline {
-  --color-ink-950: var(--color-ink-950);
-  --color-ink-900: var(--color-ink-900);
-  --color-ink-800: var(--color-ink-800);
-  --color-ink-700: var(--color-ink-700);
-  --color-ink-600: var(--color-ink-600);
-
-  --color-mist-100: var(--color-mist-100);
-  --color-mist-300: var(--color-mist-300);
-  --color-mist-500: var(--color-mist-500);
-
-  --color-signal-400: var(--color-signal-400);
-  --color-signal-500: var(--color-signal-500);
-  --color-signal-600: var(--color-signal-600);
-
-  --color-nox-500: var(--color-nox-500);
-  --color-nox-600: var(--color-nox-600);
-
-  --color-gold-400: var(--color-gold-400);
-
-  --color-success-500: var(--color-success-500);
-  --color-error-500: var(--color-error-500);
-
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
-  --font-mono: var(--font-mono);
+  /* Radius scale */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
 }
 
 * {
-  border-color: var(--color-ink-600);
+  box-sizing: border-box;
 }
 
 html {
@@ -75,32 +54,10 @@ html {
 }
 
 body {
-  background: var(--color-ink-900);
-  color: var(--color-mist-100);
-  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  margin: 0;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-signal-400);
+  outline: 2px solid var(--color-circuit-400);
   outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Signature: subtle pixel/dot-grid texture, used behind hero */
-.pixel-grid-bg {
-  background-image: radial-gradient(var(--color-ink-600) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
 }

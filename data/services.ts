@@ -1,119 +1,119 @@
-// ---------------------------------------------------------------------------
-// Pixel Nox — Single Source of Truth: Services
-// Exactly 6 services. Every service-related component/page pulls from here.
-// ---------------------------------------------------------------------------
-
+/**
+ * lucide-react icon names — kept as strings so this file has no
+ * component-library dependency. Resolve the actual icon component
+ * wherever it's rendered, e.g.:
+ *   import * as Icons from "lucide-react";
+ *   const Icon = Icons[service.icon as keyof typeof Icons];
+ */
 export interface Service {
   slug: string;
   title: string;
-  /** Short one/two-liner used on the homepage service card */
   shortDescription: string;
-  /** Longer copy used on the service detail view */
   fullDescription: string;
-  /** lucide-react icon component name, e.g. "Code2" */
   icon: string;
-  /** Bullet list of what's included / what makes it distinct */
   features: string[];
-  /** Optional list of technologies commonly used for this service */
   technologies?: string[];
 }
 
 export const services: Service[] = [
   {
-    slug: "web-app-development",
-    title: "Web App Development",
+    slug: "web-development",
+    title: "Web Development",
     shortDescription:
-      "Fast, scalable web applications built with modern frameworks and clean architecture.",
+      "Fast, accessible, production-grade websites and web apps built on modern frameworks.",
     fullDescription:
-      "We design and build production-grade web applications — from customer-facing platforms to internal tools — using modern frameworks, type-safe code, and architecture that scales with your team. Every build is optimized for performance, maintainability, and a smooth handoff.",
+      "We design and build web applications end to end — from marketing sites to complex, data-heavy dashboards. Every build is performance-budgeted, SEO-aware, and structured for long-term maintainability instead of a one-off launch.",
     icon: "Code2",
     features: [
-      "Custom front-end and back-end architecture",
-      "API design and integration",
-      "Performance and Core Web Vitals optimization",
-      "CI/CD pipeline setup",
+      "Custom web app & marketing site development",
+      "Responsive, accessible, SEO-optimized front ends",
+      "API design and backend integration",
+      "Performance auditing and Core Web Vitals tuning",
     ],
-    technologies: ["Next.js", "React", "Node.js", "PostgreSQL", "TypeScript"],
+    technologies: ["Next.js", "React", "TypeScript", "Node.js", "Tailwind CSS"],
   },
   {
     slug: "mobile-app-development",
     title: "Mobile App Development",
     shortDescription:
-      "Native-feeling iOS and Android apps from a single, well-engineered codebase.",
+      "Native-feeling iOS and Android apps from a single, well-architected codebase.",
     fullDescription:
-      "We build cross-platform mobile applications that feel native, ship fast, and are easy to maintain long-term. From MVP to App Store launch, we handle architecture, offline support, push notifications, and release management.",
+      "From product scoping to App Store submission, we build cross-platform mobile apps that feel native, perform well on real devices, and are structured so future features don't require a rewrite.",
     icon: "Smartphone",
     features: [
-      "Cross-platform iOS & Android builds",
-      "Offline-first data handling",
-      "Push notifications & deep linking",
-      "App Store / Play Store release management",
+      "Cross-platform iOS & Android development",
+      "Offline-first data sync and push notifications",
+      "App Store / Play Store submission support",
+      "Ongoing maintenance and version upgrades",
     ],
     technologies: ["React Native", "Expo", "TypeScript", "Firebase"],
   },
   {
-    slug: "ui-ux-design",
-    title: "UI/UX Design",
+    slug: "cyber-security",
+    title: "Cyber Security",
     shortDescription:
-      "Interface design grounded in usability research, not just visual trends.",
+      "Security audits, hardening, and monitoring so your product earns customer trust.",
     fullDescription:
-      "Good software feels obvious to use. We design interfaces backed by user research, information architecture, and interaction design principles — delivering wireframes, prototypes, and design systems your engineering team can build from directly.",
-    icon: "PenTool",
+      "We assess applications and infrastructure for real-world risk, close the gaps that matter, and put practical monitoring in place — not a compliance checkbox, but a security posture your team can actually maintain.",
+    icon: "ShieldCheck",
     features: [
-      "User research & journey mapping",
-      "Wireframes & interactive prototypes",
-      "Design systems & component libraries",
-      "Usability testing",
+      "Application & infrastructure security audits",
+      "Penetration testing and vulnerability remediation",
+      "Secure authentication and access control design",
+      "Incident response planning and monitoring setup",
     ],
-    technologies: ["Figma", "Framer"],
+    technologies: ["OWASP ZAP", "Burp Suite", "AWS Security Hub", "SIEM tooling"],
   },
   {
-    slug: "custom-software-solutions",
-    title: "Custom Software Solutions",
+    slug: "ai-development",
+    title: "AI Development",
     shortDescription:
-      "Purpose-built systems for workflows off-the-shelf software can't handle.",
+      "Practical AI features — from LLM-powered tools to custom models — built for production.",
     fullDescription:
-      "When existing tools don't fit the way your business actually operates, we build custom software around your workflow — internal dashboards, automation tools, and systems that integrate cleanly with what you already run.",
-    icon: "Settings2",
+      "We build AI features that solve a specific business problem: retrieval-augmented assistants, automation pipelines, and custom models, deployed with the monitoring and guardrails production systems need.",
+    icon: "BrainCircuit",
     features: [
-      "Workflow & requirements analysis",
-      "Internal tools & admin dashboards",
-      "Process automation",
-      "Third-party system integration",
+      "LLM-powered features and AI assistants",
+      "RAG pipelines and vector search integration",
+      "Custom model training and fine-tuning",
+      "AI workflow automation",
     ],
-    technologies: ["Node.js", "Python", "PostgreSQL", "Docker"],
+    technologies: ["Python", "PyTorch", "LangChain", "OpenAI / Anthropic APIs"],
   },
   {
-    slug: "saas-product-development",
-    title: "SaaS Product Development",
+    slug: "cloud-services",
+    title: "Cloud Services",
     shortDescription:
-      "End-to-end SaaS builds — multi-tenant architecture, billing, and everything between.",
+      "Cloud architecture, migration, and DevOps that scales with your product, not against it.",
     fullDescription:
-      "We take SaaS products from concept to launch: multi-tenant architecture, authentication, subscription billing, and the operational tooling needed to run and scale a product business, not just ship a demo.",
-    icon: "Layers",
+      "We design and manage cloud infrastructure — from initial architecture to CI/CD pipelines and cost optimization — so your team ships confidently and your infrastructure bill doesn't become a surprise.",
+    icon: "Cloud",
     features: [
-      "Multi-tenant architecture",
-      "Subscription billing integration",
-      "Role-based access & authentication",
-      "Analytics & usage tracking",
+      "Cloud architecture and migration",
+      "CI/CD pipeline setup and automation",
+      "Infrastructure as code",
+      "Cost optimization and monitoring",
     ],
-    technologies: ["Next.js", "Stripe", "PostgreSQL", "AWS"],
+    technologies: ["AWS", "Google Cloud", "Docker", "Kubernetes", "Terraform"],
   },
   {
-    slug: "it-consulting",
-    title: "IT Consulting",
+    slug: "payment-integration",
+    title: "Payment Integration",
     shortDescription:
-      "Technical strategy, architecture review, and hands-on guidance for engineering teams.",
+      "Secure, compliant payment flows integrated cleanly into your product.",
     fullDescription:
-      "Sometimes the highest-leverage work is a second set of experienced eyes. We provide architecture reviews, technology roadmaps, and hands-on technical guidance to help engineering teams make better decisions faster.",
-    icon: "Compass",
+      "We integrate payment gateways, subscription billing, and payout systems with a focus on compliance and reliability — so transactions just work, and edge cases (refunds, disputes, failed payments) are handled gracefully.",
+    icon: "CreditCard",
     features: [
-      "Architecture & code audits",
-      "Technology stack recommendations",
-      "Scalability & security review",
-      "Team process and tooling guidance",
+      "Payment gateway integration (cards, wallets, local rails)",
+      "Subscription and recurring billing setup",
+      "PCI-DSS-aware implementation practices",
+      "Refunds, disputes, and payout handling",
     ],
+    technologies: ["Stripe", "PayPal", "Razorpay", "Webhooks"],
   },
 ];
 
-export default services;
+export function getServiceBySlug(slug: string): Service | undefined {
+  return services.find((service) => service.slug === slug);
+}

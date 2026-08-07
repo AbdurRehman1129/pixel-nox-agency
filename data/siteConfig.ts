@@ -1,25 +1,13 @@
-// ---------------------------------------------------------------------------
-// Pixel Nox — Single Source of Truth: Site Metadata
-// Every component should import from here instead of hardcoding copy.
-// ---------------------------------------------------------------------------
+export type SocialIcon = "linkedin" | "twitter" | "github" | "instagram" | "facebook";
 
 export interface SocialLink {
-  /** Display name of the platform, e.g. "LinkedIn" */
   platform: string;
-  /** Full URL to the profile/page */
   url: string;
-  /** lucide-react icon component name, e.g. "Linkedin" */
-  icon: string;
-}
-
-export interface NavLink {
-  label: string;
-  href: string;
+  icon: SocialIcon;
 }
 
 export interface SiteConfig {
   name: string;
-  shortName: string;
   tagline: string;
   description: string;
   url: string;
@@ -28,71 +16,35 @@ export interface SiteConfig {
     phone: string;
     address: string;
   };
-  socials: SocialLink[];
-  navLinks: NavLink[];
-  legalLinks: NavLink[];
+  social: SocialLink[];
   footer: {
-    blurb: string;
-    copyright: string;
+    copyrightName: string;
   };
 }
 
+/**
+ * Single source of truth for site-wide copy and contact info.
+ * Every component should read from here instead of hardcoding text.
+ * Replace the placeholder values below with your real details.
+ */
 export const siteConfig: SiteConfig = {
   name: "Pixel Nox",
-  shortName: "Pixel Nox",
-  tagline: "Software, engineered with precision.",
+  tagline: "Engineering software that scales.",
   description:
-    "Pixel Nox is a software product agency that designs and builds web apps, mobile apps, and custom platforms for ambitious teams — from first prototype to production scale.",
+    "Pixel Nox is a software product agency delivering web, mobile, AI, cloud, security and payments solutions for teams that need to move fast without breaking things.",
   url: "https://pixelnox.com",
-
   contact: {
     email: "hello@pixelnox.com",
-    phone: "+92 300 1234567",
-    address: "Rawalpindi, Punjab, Pakistan",
+    phone: "+1 (000) 000-0000",
+    address: "Your City, Your Country",
   },
-
-  socials: [
-    {
-      platform: "LinkedIn",
-      url: "https://linkedin.com/company/pixelnox",
-      icon: "Linkedin",
-    },
-    {
-      platform: "X",
-      url: "https://x.com/pixelnox",
-      icon: "Twitter",
-    },
-    {
-      platform: "GitHub",
-      url: "https://github.com/pixelnox",
-      icon: "Github",
-    },
-    {
-      platform: "Instagram",
-      url: "https://instagram.com/pixelnox",
-      icon: "Instagram",
-    },
+  social: [
+    { platform: "LinkedIn", url: "https://linkedin.com/company/pixelnox", icon: "linkedin" },
+    { platform: "X (Twitter)", url: "https://x.com/pixelnox", icon: "twitter" },
+    { platform: "GitHub", url: "https://github.com/pixelnox", icon: "github" },
+    { platform: "Instagram", url: "https://instagram.com/pixelnox", icon: "instagram" },
   ],
-
-  navLinks: [
-    { label: "Home", href: "/" },
-    { label: "Services", href: "/#services" },
-    { label: "Contact", href: "/contact" },
-  ],
-
-  legalLinks: [
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms & Conditions", href: "/terms-and-conditions" },
-    { label: "Refund Policy", href: "/refund-policy" },
-    { label: "Cookies Policy", href: "/cookies-policy" },
-  ],
-
   footer: {
-    blurb:
-      "We're a software product agency helping startups and enterprises ship reliable, well-engineered digital products.",
-    /** Footer component appends the live current year to this at render time. */
-    copyright: "Pixel Nox. All rights reserved.",
+    copyrightName: "Pixel Nox",
   },
 };
-
-export default siteConfig;
