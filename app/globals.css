@@ -1,63 +1,78 @@
 @import "tailwindcss";
 
 /*
- * Pixel Nox design tokens.
- * Tailwind v4 reads custom theme values straight from this @theme block —
- * this project has no tailwind.config.ts, so this file IS the config.
- * Each --color-*, --font-*, and --radius-* var below becomes a utility
- * class automatically, e.g. --color-signal-500 -> bg-signal-500 / text-signal-500.
- *
- * Palette: "Ink & Signal" — a dark, engineering-led palette instead of a
- * generic SaaS gradient. Ink = near-black neutrals for depth, Signal = a
- * confident indigo-blue for primary actions, Circuit = a teal accent for
- * highlights/links, Mist = light neutrals for text on dark surfaces.
- */
-@theme {
-  /* Ink — dark neutrals / surfaces */
-  --color-ink-950: #05070d;
-  --color-ink-900: #0b0f1a;
-  --color-ink-800: #141a2b;
-  --color-ink-700: #1f273c;
+  Pixel Nox design tokens — Tailwind v4 CSS-first config.
+  Your package.json uses tailwindcss v4 + @tailwindcss/postcss, which does NOT
+  read tailwind.config.ts for theme colors by default. If your project still
+  has a v3-style tailwind.config.ts defining theme.extend.colors, or globals.css
+  starts with `@tailwind base; @tailwind components; @tailwind utilities;`
+  instead of `@import "tailwindcss";`, that's almost certainly why custom
+  colors/utilities weren't applying and things looked unstyled/misaligned.
+  Delete any leftover tailwind.config.ts — everything now lives here.
+*/
 
-  /* Signal — primary brand blue */
-  --color-signal-500: #3d5afe;
-  --color-signal-400: #6b82ff;
-  --color-signal-300: #9aabff;
+@theme inline {
+  /* Palette */
+  --color-ink: #0a0d12;         /* page background */
+  --color-panel: #12161f;        /* card / section surface */
+  --color-panel-hover: #171c27;
+  --color-line: #232838;         /* borders, dividers, grid */
+  --color-paper: #edf0f5;        /* primary text */
+  --color-mist: #9aa3b8;         /* secondary text */
+  --color-signal: #3ddc97;       /* primary accent */
+  --color-signal-dim: #2bb57c;   /* accent hover/active */
+  --color-volt: #ffb648;         /* secondary accent, sparing use */
+  --color-volt-dim: #e69a2e;
 
-  /* Circuit — accent teal (links, highlights, focus) */
-  --color-circuit-500: #00d4b5;
-  --color-circuit-400: #3ee6cb;
-
-  /* Mist — light neutrals for text on dark surfaces */
-  --color-mist-100: #f4f6fb;
-  --color-mist-300: #cbd5e1;
-  --color-mist-400: #94a3b8;
-  --color-mist-600: #64748b;
-
-  /* Fonts — wired to next/font variables set in app/layout.tsx */
-  --font-display: var(--font-space-grotesk), "Segoe UI", sans-serif;
-  --font-body: var(--font-inter), "Segoe UI", sans-serif;
+  /* Fonts — wired to the CSS variables next/font sets on <html> in layout.tsx */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 
   /* Radius scale */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 18px;
-  --radius-xl: 28px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
 }
 
-* {
-  box-sizing: border-box;
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-body), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), system-ui, sans-serif;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-}
-
-:focus-visible {
-  outline: 2px solid var(--color-circuit-400);
-  outline-offset: 2px;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -1,15 +1,9 @@
-/**
- * lucide-react icon names — kept as strings so this file has no
- * component-library dependency. Resolve the actual icon component
- * wherever it's rendered, e.g.:
- *   import * as Icons from "lucide-react";
- *   const Icon = Icons[service.icon as keyof typeof Icons];
- */
 export interface Service {
   slug: string;
   title: string;
   shortDescription: string;
   fullDescription: string;
+  /** lucide-react icon component name */
   icon: string;
   features: string[];
   technologies?: string[];
@@ -20,100 +14,102 @@ export const services: Service[] = [
     slug: "web-development",
     title: "Web Development",
     shortDescription:
-      "Fast, accessible, production-grade websites and web apps built on modern frameworks.",
+      "Fast, scalable web apps engineered for growth — not just launch day.",
     fullDescription:
-      "We design and build web applications end to end — from marketing sites to complex, data-heavy dashboards. Every build is performance-budgeted, SEO-aware, and structured for long-term maintainability instead of a one-off launch.",
+      "We design and build production-grade web applications, from marketing sites to complex internal platforms. Every build is architected for performance, maintainability, and the traffic spikes that come with success.",
     icon: "Code2",
     features: [
-      "Custom web app & marketing site development",
-      "Responsive, accessible, SEO-optimized front ends",
-      "API design and backend integration",
-      "Performance auditing and Core Web Vitals tuning",
+      "Custom web application development",
+      "E-commerce and marketplace platforms",
+      "Progressive Web Apps (PWA)",
+      "API design and third-party integrations",
+      "Performance and Core Web Vitals optimization",
     ],
-    technologies: ["Next.js", "React", "TypeScript", "Node.js", "Tailwind CSS"],
+    technologies: ["Next.js", "React", "Node.js", "TypeScript", "PostgreSQL"],
   },
   {
     slug: "mobile-app-development",
     title: "Mobile App Development",
     shortDescription:
-      "Native-feeling iOS and Android apps from a single, well-architected codebase.",
+      "Native-feel iOS and Android apps from a single, well-engineered codebase.",
     fullDescription:
-      "From product scoping to App Store submission, we build cross-platform mobile apps that feel native, perform well on real devices, and are structured so future features don't require a rewrite.",
+      "From concept to App Store, we build mobile products that feel native, ship fast, and scale across platforms without duplicating engineering effort.",
     icon: "Smartphone",
     features: [
-      "Cross-platform iOS & Android development",
-      "Offline-first data sync and push notifications",
-      "App Store / Play Store submission support",
-      "Ongoing maintenance and version upgrades",
+      "Cross-platform apps (iOS & Android)",
+      "Native performance optimization",
+      "Offline-first architecture",
+      "Push notifications and deep linking",
+      "App Store & Play Store deployment",
     ],
-    technologies: ["React Native", "Expo", "TypeScript", "Firebase"],
+    technologies: ["React Native", "Swift", "Kotlin", "Expo", "Firebase"],
   },
   {
     slug: "cyber-security",
-    title: "Cyber Security",
+    title: "Cybersecurity",
     shortDescription:
-      "Security audits, hardening, and monitoring so your product earns customer trust.",
+      "Security built into the architecture, not bolted on after a breach.",
     fullDescription:
-      "We assess applications and infrastructure for real-world risk, close the gaps that matter, and put practical monitoring in place — not a compliance checkbox, but a security posture your team can actually maintain.",
+      "We audit, harden, and monitor software systems so vulnerabilities are caught before they become incidents — covering application, infrastructure, and data layers.",
     icon: "ShieldCheck",
     features: [
-      "Application & infrastructure security audits",
-      "Penetration testing and vulnerability remediation",
-      "Secure authentication and access control design",
-      "Incident response planning and monitoring setup",
+      "Security audits and penetration testing",
+      "Secure architecture and code review",
+      "Compliance readiness (SOC 2, GDPR, HIPAA)",
+      "Identity and access management",
+      "Incident response planning",
     ],
-    technologies: ["OWASP ZAP", "Burp Suite", "AWS Security Hub", "SIEM tooling"],
+    technologies: ["OWASP", "Snyk", "AWS IAM", "OAuth 2.0", "SIEM tooling"],
   },
   {
     slug: "ai-development",
     title: "AI Development",
     shortDescription:
-      "Practical AI features — from LLM-powered tools to custom models — built for production.",
+      "Applied AI features that solve a real workflow problem, not a demo.",
     fullDescription:
-      "We build AI features that solve a specific business problem: retrieval-augmented assistants, automation pipelines, and custom models, deployed with the monitoring and guardrails production systems need.",
+      "We build and integrate machine learning and generative AI into existing products — from internal automation to customer-facing intelligent features — grounded in your actual data.",
     icon: "BrainCircuit",
     features: [
-      "LLM-powered features and AI assistants",
-      "RAG pipelines and vector search integration",
-      "Custom model training and fine-tuning",
-      "AI workflow automation",
+      "LLM integration and RAG pipelines",
+      "Custom model fine-tuning",
+      "Workflow automation with AI agents",
+      "Data pipeline and vector infrastructure",
+      "AI feature prototyping and evaluation",
     ],
-    technologies: ["Python", "PyTorch", "LangChain", "OpenAI / Anthropic APIs"],
+    technologies: ["Python", "PyTorch", "LangChain", "Anthropic/OpenAI APIs", "Vector DBs"],
   },
   {
     slug: "cloud-services",
     title: "Cloud Services",
     shortDescription:
-      "Cloud architecture, migration, and DevOps that scales with your product, not against it.",
+      "Infrastructure that scales with usage, not with your ops team's hours.",
     fullDescription:
-      "We design and manage cloud infrastructure — from initial architecture to CI/CD pipelines and cost optimization — so your team ships confidently and your infrastructure bill doesn't become a surprise.",
+      "We design, migrate, and manage cloud infrastructure so systems stay reliable under load and costs stay predictable as you grow.",
     icon: "Cloud",
     features: [
       "Cloud architecture and migration",
-      "CI/CD pipeline setup and automation",
-      "Infrastructure as code",
-      "Cost optimization and monitoring",
+      "CI/CD pipeline setup",
+      "Infrastructure as Code",
+      "Auto-scaling and cost optimization",
+      "24/7 monitoring and observability",
     ],
-    technologies: ["AWS", "Google Cloud", "Docker", "Kubernetes", "Terraform"],
+    technologies: ["AWS", "GCP", "Docker", "Kubernetes", "Terraform"],
   },
   {
     slug: "payment-integration",
     title: "Payment Integration",
     shortDescription:
-      "Secure, compliant payment flows integrated cleanly into your product.",
+      "Reliable, compliant payment flows that don't lose customers at checkout.",
     fullDescription:
-      "We integrate payment gateways, subscription billing, and payout systems with a focus on compliance and reliability — so transactions just work, and edge cases (refunds, disputes, failed payments) are handled gracefully.",
+      "We integrate and build payment infrastructure — subscriptions, marketplaces, multi-currency checkout — engineered for reliability and PCI compliance.",
     icon: "CreditCard",
     features: [
-      "Payment gateway integration (cards, wallets, local rails)",
-      "Subscription and recurring billing setup",
-      "PCI-DSS-aware implementation practices",
-      "Refunds, disputes, and payout handling",
+      "Payment gateway integration",
+      "Subscription and billing systems",
+      "Multi-currency and marketplace payments",
+      "PCI-DSS compliant architecture",
+      "Fraud detection and reconciliation",
     ],
-    technologies: ["Stripe", "PayPal", "Razorpay", "Webhooks"],
+    technologies: ["Stripe", "PayPal", "Adyen", "Webhooks", "Ledger systems"],
   },
 ];
-
-export function getServiceBySlug(slug: string): Service | undefined {
-  return services.find((service) => service.slug === slug);
-}
