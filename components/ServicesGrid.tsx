@@ -1,9 +1,5 @@
-"use client";
-
-import * as Icons from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import { motion } from "framer-motion";
 import { services } from "@/data/services";
+import ServiceCard from "@/components/ServiceCard";
 
 export default function ServicesGrid() {
   return (
@@ -19,29 +15,9 @@ export default function ServicesGrid() {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => {
-            const Icon =
-              (Icons[service.icon as keyof typeof Icons] as LucideIcon) ??
-              Icons.Code2;
-            return (
-              <motion.div
-                key={service.slug}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-                className="group rounded-lg border border-line bg-panel p-6 transition-colors hover:border-signal"
-              >
-                <Icon size={24} className="text-signal" />
-                <p className="mt-4 font-display text-lg font-semibold text-paper">
-                  {service.title}
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-mist">
-                  {service.shortDescription}
-                </p>
-              </motion.div>
-            );
-          })}
+          {services.map((service, i) => (
+            <ServiceCard key={service.slug} service={service} index={i} />
+          ))}
         </div>
       </div>
     </section>
