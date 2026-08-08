@@ -3,6 +3,7 @@ import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MotionProvider from "@/components/MotionProvider";
 import { siteConfig } from "@/data/siteConfig";
 
 const spaceGrotesk = Space_Grotesk({
@@ -72,9 +73,11 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${plexSans.variable} ${plexMono.variable}`}
     >
       <body className="bg-ink text-paper antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <MotionProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

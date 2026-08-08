@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
 import ContactForm from "@/components/ContactForm";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <section className="mx-auto max-w-5xl px-6 py-20">
-      <div className="max-w-2xl">
+      <Reveal className="max-w-2xl">
         <h1 className="font-display text-3xl font-semibold text-paper sm:text-4xl">
           Let&rsquo;s talk about your project
         </h1>
@@ -21,9 +22,9 @@ export default function ContactPage() {
           <span className="text-paper">Book a Meeting</span> button on the
           homepage instead.
         </p>
-      </div>
+      </Reveal>
 
-      <div className="mt-12 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
+      <Reveal delay={0.1} className="mt-12 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
         <ContactForm />
 
         <div className="space-y-8">
@@ -67,7 +68,7 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

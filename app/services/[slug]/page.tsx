@@ -5,6 +5,7 @@ import type { LucideIcon } from "lucide-react";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import type { Metadata } from "next";
 import { services } from "@/data/services";
+import Reveal from "@/components/Reveal";
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
@@ -66,7 +67,7 @@ export default async function ServiceDetailPage({
         {service.fullDescription}
       </p>
 
-      <div className="mt-10 grid gap-10 sm:grid-cols-2">
+      <Reveal delay={0.1} className="mt-10 grid gap-10 sm:grid-cols-2">
         <div>
           <h2 className="text-sm font-medium uppercase tracking-wide text-signal">
             What&rsquo;s included
@@ -98,9 +99,12 @@ export default async function ServiceDetailPage({
             </div>
           </div>
         )}
-      </div>
+      </Reveal>
 
-      <div className="mt-14 flex flex-col items-start gap-4 rounded-lg border border-line bg-panel p-8 sm:flex-row sm:items-center sm:justify-between">
+      <Reveal
+        delay={0.15}
+        className="mt-14 flex flex-col items-start gap-4 rounded-lg border border-line bg-panel p-8 sm:flex-row sm:items-center sm:justify-between"
+      >
         <div>
           <p className="font-display text-lg font-semibold text-paper">
             Ready to talk about {service.title.toLowerCase()}?
@@ -116,7 +120,7 @@ export default async function ServiceDetailPage({
           Contact us
           <ArrowRight size={14} />
         </Link>
-      </div>
+      </Reveal>
     </section>
   );
 }

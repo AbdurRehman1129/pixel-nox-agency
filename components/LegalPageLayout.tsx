@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { siteConfig } from "@/data/siteConfig";
+import Reveal from "@/components/Reveal";
 
 export default function LegalPageLayout({
   title,
@@ -12,12 +13,14 @@ export default function LegalPageLayout({
 }) {
   return (
     <section className="mx-auto max-w-3xl px-6 py-20">
-      <h1 className="font-display text-3xl font-semibold text-paper sm:text-4xl">
-        {title}
-      </h1>
-      <p className="mt-3 font-mono text-xs uppercase tracking-wide text-mist">
-        Last updated: {lastUpdated}
-      </p>
+      <Reveal>
+        <h1 className="font-display text-3xl font-semibold text-paper sm:text-4xl">
+          {title}
+        </h1>
+        <p className="mt-3 font-mono text-xs uppercase tracking-wide text-mist">
+          Last updated: {lastUpdated}
+        </p>
+      </Reveal>
 
       <div
         className="
