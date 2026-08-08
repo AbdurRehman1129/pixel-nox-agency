@@ -30,8 +30,8 @@ export const siteConfig: SiteConfig = {
   description:
     "Pixel Nox is a software product agency designing and engineering web, mobile, AI, and cloud systems for companies that need to move fast without breaking things.",
   email: "hello@pixelnox.com",
-  phone: "+1 (555) 010-2049",
-  address: "148 Foundry Street, Suite 4B, Austin, TX 78701",
+  phone: "+1 (415) 617-9097",
+  address: "1001 S MAIN ST, STE 600, KALISPELL, MT 59901-1498, USA",
   social: [
     { platform: "LinkedIn", url: "https://linkedin.com/company/pixel-nox", badge: "in" },
     { platform: "X", url: "https://x.com/pixelnox", badge: "X" },

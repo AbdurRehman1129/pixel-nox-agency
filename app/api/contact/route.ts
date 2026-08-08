@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { sendNotificationEmail, escapeHtml } from "@/lib/email";
 
 export async function POST(request: Request) {
   try {
@@ -12,13 +13,27 @@ export async function POST(request: Request) {
       );
     }
 
-    // TODO: connect a real email service here (e.g. Resend, SendGrid, or
-    // Postmark) and send this inquiry to the agency inbox + an optional
-    // confirmation email to the sender. Add the provider's API key as an
-    // environment variable (e.g. RESEND_API_KEY) once chosen — see
-    // .env.example in Phase 9. This route is intentionally separate from
-    // /api/book-meeting so general inquiries and meeting requests don't mix.
     console.log("New contact form submission:", data);
+
+    const html = `
+      <h2>New contact form submission</h2>
+      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Subject:</strong> ${escapeHtml(subject)}</p>
+      <p><strong>Message:</strong></p>
+      <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
+    `;
+
+    const result = await sendNotificationEmail({
+      subject: `New inquiry: ${subject}`,
+      html,
+    });
+
+    if (!result.sent) {
+      // Submission is still logged above, so nothing is lost — but flag
+      // this in the server logs so it's obvious email isn't going out yet.
+      console.warn("Contact email not sent:", result.reason);
+    }
 
     return NextResponse.json({ ok: true });
   } catch {
