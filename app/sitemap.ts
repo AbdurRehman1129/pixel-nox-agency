@@ -5,6 +5,7 @@ import { services } from "@/data/services";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: siteConfig.url, changeFrequency: "monthly", priority: 1 },
+    { url: `${siteConfig.url}/services`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${siteConfig.url}/contact`, changeFrequency: "yearly", priority: 0.8 },
     { url: `${siteConfig.url}/privacy-policy`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${siteConfig.url}/terms-and-conditions`, changeFrequency: "yearly", priority: 0.3 },
