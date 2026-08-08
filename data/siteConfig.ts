@@ -12,6 +12,8 @@ export interface SocialLink {
 
 export interface SiteConfig {
   name: string;
+  /** Production URL, no trailing slash. Update this once the real domain is live. */
+  url: string;
   tagline: string;
   description: string;
   email: string;
@@ -23,6 +25,7 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: "Pixel Nox",
+  url: "https://pixelnox.com",
   tagline: "Precision-built software for teams that ship.",
   description:
     "Pixel Nox is a software product agency designing and engineering web, mobile, AI, and cloud systems for companies that need to move fast without breaking things.",

@@ -26,11 +26,39 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: `${siteConfig.name} — Software Product Agency`,
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: [
+    "software agency",
+    "software development",
+    "web development",
+    "mobile app development",
+    "AI development",
+    "cloud services",
+    siteConfig.name,
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} — Software Product Agency`,
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} — Software Product Agency`,
+    description: siteConfig.description,
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
