@@ -23,6 +23,19 @@ export async function POST(request: Request) {
       );
     }
 
+    // Reject past dates server-side too — the client already blocks this,
+    // but this route can be called directly, bypassing the form.
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const requestedDate = new Date(`${preferredDate}T00:00:00`);
+
+    if (Number.isNaN(requestedDate.getTime()) || requestedDate < today) {
+      return NextResponse.json(
+        { error: "Preferred date must be today or a future date." },
+        { status: 400 }
+      );
+    }
+
     console.log("New meeting request:", data);
 
     const serviceTitle =

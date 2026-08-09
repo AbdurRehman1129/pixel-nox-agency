@@ -53,6 +53,19 @@
     text-rendering: optimizeLegibility;
   }
 
+  /*
+   * Browsers render native form controls (date/time picker icons,
+   * checkboxes, etc.) in a light-mode style by default, which becomes
+   * invisible against our dark inputs. This tells the browser to use its
+   * dark-mode rendering for those controls instead, so the calendar/clock
+   * icon on date and time inputs is actually visible on desktop.
+   */
+  input,
+  select,
+  textarea {
+    color-scheme: dark;
+  }
+
   h1,
   h2,
   h3,

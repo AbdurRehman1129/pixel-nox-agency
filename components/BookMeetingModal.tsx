@@ -11,11 +11,21 @@ interface BookMeetingModalProps {
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+/** Local YYYY-MM-DD for today, used as the date input's floor. */
+function getTodayDateString(): string {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 export default function BookMeetingModal({ open, onClose }: BookMeetingModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const todayDate = getTodayDateString();
 
   useEffect(() => {
     if (!open) return;
@@ -65,10 +75,28 @@ export default function BookMeetingModal({ open, onClose }: BookMeetingModalProp
     const name = String(data.get("name") || "").trim();
     const email = String(data.get("email") || "").trim();
     const preferredDate = String(data.get("preferredDate") || "").trim();
+    const preferredTime = String(data.get("preferredTime") || "").trim();
 
     if (!name || !email || !preferredDate) {
       setStatus("error");
       setErrorMessage("Name, email, and a preferred date are required.");
+      return;
+    }
+
+    // Belt-and-suspenders past-date check: the input's min attribute stops
+    // most users, but a manually typed or pasted value could still slip
+    // through in some browsers, so we validate again here.
+    const selectedDateTime = new Date(
+      preferredTime ? `${preferredDate}T${preferredTime}` : `${preferredDate}T00:00`
+    );
+    const now = new Date();
+    const isPastDate = preferredDate < todayDate;
+    const isPastTimeToday =
+      preferredDate === todayDate && preferredTime && selectedDateTime < now;
+
+    if (isPastDate || isPastTimeToday) {
+      setStatus("error");
+      setErrorMessage("Please choose a date and time that hasn't already passed.");
       return;
     }
 
@@ -154,7 +182,13 @@ export default function BookMeetingModal({ open, onClose }: BookMeetingModalProp
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <Field label="Preferred Date" name="preferredDate" type="date" required />
+              <Field
+                label="Preferred Date"
+                name="preferredDate"
+                type="date"
+                required
+                min={todayDate}
+              />
               <Field label="Preferred Time" name="preferredTime" type="time" />
             </div>
 
@@ -196,12 +230,14 @@ function Field({
   type = "text",
   required,
   inputRef,
+  min,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
   inputRef?: RefObject<HTMLInputElement | null>;
+  min?: string;
 }) {
   return (
     <div>
@@ -215,6 +251,7 @@ function Field({
         name={name}
         type={type}
         required={required}
+        min={min}
         className="w-full rounded-md border border-line bg-ink px-3 py-2.5 text-sm text-paper focus-visible:border-signal"
       />
     </div>
