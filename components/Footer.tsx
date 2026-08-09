@@ -23,20 +23,22 @@ export default function Footer() {
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-mist">
             {siteConfig.description}
           </p>
-          <div className="mt-5 flex gap-3">
-            {siteConfig.social.map((link) => (
-              <a
-                key={link.platform}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.platform}
-                className="flex h-9 w-9 items-center justify-center rounded-md border border-line font-mono text-xs text-mist transition-colors hover:border-signal hover:text-signal"
-              >
-                {link.badge}
-              </a>
-            ))}
-          </div>
+          {siteConfig.social.length > 0 && (
+            <div className="mt-5 flex gap-3">
+              {siteConfig.social.map((link) => (
+                <a
+                  key={link.platform}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.platform}
+                  className="flex h-9 w-9 items-center justify-center rounded-md border border-line font-mono text-xs text-mist transition-colors hover:border-signal hover:text-signal"
+                >
+                  {link.badge}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         <div>

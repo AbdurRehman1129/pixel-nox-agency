@@ -32,11 +32,15 @@ export const siteConfig: SiteConfig = {
   email: "contact@pixelnox.site",
   phone: "+1 (415) 617-9097",
   address: "1001 S MAIN ST, STE 600, KALISPELL, MT 59901-1498, USA",
+  // Social accounts aren't live yet. Uncomment and fill in real URLs once
+  // they exist — the footer and contact page automatically hide the
+  // "Follow us" section entirely while this array is empty, so nothing
+  // broken or placeholder-looking shows up in the meantime.
   social: [
-    { platform: "LinkedIn", url: "https://linkedin.com/company/pixel-nox", badge: "in" },
-    { platform: "X", url: "https://x.com/pixelnox", badge: "X" },
-    { platform: "GitHub", url: "https://github.com/pixel-nox", badge: "GH" },
-    { platform: "Instagram", url: "https://instagram.com/pixelnox", badge: "IG" },
+    // { platform: "LinkedIn", url: "https://linkedin.com/company/pixel-nox", badge: "in" },
+    // { platform: "X", url: "https://x.com/pixelnox", badge: "X" },
+    // { platform: "GitHub", url: "https://github.com/pixel-nox", badge: "GH" },
+    // { platform: "Instagram", url: "https://instagram.com/pixelnox", badge: "IG" },
   ],
   footerCopyright: "Pixel Nox. All rights reserved.",
 };

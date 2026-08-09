@@ -50,23 +50,25 @@ export default function ContactPage() {
             </ul>
           </div>
 
-          <div>
-            <p className="text-sm font-medium text-paper">Follow us</p>
-            <div className="mt-4 flex gap-3">
-              {siteConfig.social.map((link) => (
-                <a
-                  key={link.platform}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.platform}
-                  className="flex h-9 w-9 items-center justify-center rounded-md border border-line font-mono text-xs text-mist transition-colors hover:border-signal hover:text-signal"
-                >
-                  {link.badge}
-                </a>
-              ))}
+          {siteConfig.social.length > 0 && (
+            <div>
+              <p className="text-sm font-medium text-paper">Follow us</p>
+              <div className="mt-4 flex gap-3">
+                {siteConfig.social.map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.platform}
+                    className="flex h-9 w-9 items-center justify-center rounded-md border border-line font-mono text-xs text-mist transition-colors hover:border-signal hover:text-signal"
+                  >
+                    {link.badge}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </Reveal>
     </section>

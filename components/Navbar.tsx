@@ -8,7 +8,6 @@ import { siteConfig } from "@/data/siteConfig";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
