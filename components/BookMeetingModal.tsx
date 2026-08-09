@@ -20,12 +20,63 @@ function getTodayDateString(): string {
   return `${year}-${month}-${day}`;
 }
 
+/** Curated fallback for browsers without Intl.supportedValuesOf support. */
+const FALLBACK_TIME_ZONES = [
+  "UTC",
+  "America/Los_Angeles",
+  "America/Denver",
+  "America/Chicago",
+  "America/New_York",
+  "America/Sao_Paulo",
+  "Europe/London",
+  "Europe/Paris",
+  "Europe/Berlin",
+  "Europe/Moscow",
+  "Africa/Cairo",
+  "Africa/Lagos",
+  "Asia/Dubai",
+  "Asia/Karachi",
+  "Asia/Kolkata",
+  "Asia/Dhaka",
+  "Asia/Bangkok",
+  "Asia/Singapore",
+  "Asia/Shanghai",
+  "Asia/Tokyo",
+  "Asia/Seoul",
+  "Australia/Sydney",
+  "Pacific/Auckland",
+];
+
+function getTimeZoneOptions(): string[] {
+  if (typeof Intl !== "undefined" && "supportedValuesOf" in Intl) {
+    try {
+      return (
+        Intl as unknown as { supportedValuesOf: (key: string) => string[] }
+      ).supportedValuesOf("timeZone");
+    } catch {
+      // fall through to curated list below
+    }
+  }
+  return FALLBACK_TIME_ZONES;
+}
+
+/** Best-effort guess at the visitor's own IANA timezone, used as the default. */
+function getVisitorTimeZone(): string {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+  } catch {
+    return "UTC";
+  }
+}
+
 export default function BookMeetingModal({ open, onClose }: BookMeetingModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const todayDate = getTodayDateString();
+  const timeZoneOptions = getTimeZoneOptions();
+  const visitorTimeZone = getVisitorTimeZone();
 
   useEffect(() => {
     if (!open) return;
@@ -76,10 +127,11 @@ export default function BookMeetingModal({ open, onClose }: BookMeetingModalProp
     const email = String(data.get("email") || "").trim();
     const preferredDate = String(data.get("preferredDate") || "").trim();
     const preferredTime = String(data.get("preferredTime") || "").trim();
+    const timeZone = String(data.get("timeZone") || "").trim();
 
-    if (!name || !email || !preferredDate) {
+    if (!name || !email || !preferredDate || !timeZone) {
       setStatus("error");
-      setErrorMessage("Name, email, and a preferred date are required.");
+      setErrorMessage("Name, email, preferred date, and time zone are required.");
       return;
     }
 
@@ -190,6 +242,32 @@ export default function BookMeetingModal({ open, onClose }: BookMeetingModalProp
                 min={todayDate}
               />
               <Field label="Preferred Time" name="preferredTime" type="time" />
+            </div>
+
+            <div>
+              <label htmlFor="timeZone" className="mb-1.5 block text-sm text-mist">
+                Time Zone <span className="text-volt">*</span>
+              </label>
+              <select
+                id="timeZone"
+                name="timeZone"
+                required
+                defaultValue={visitorTimeZone}
+                className="w-full rounded-md border border-line bg-ink px-3 py-2.5 text-sm text-paper focus-visible:border-signal"
+              >
+                {!timeZoneOptions.includes(visitorTimeZone) && (
+                  <option value={visitorTimeZone}>{visitorTimeZone}</option>
+                )}
+                {timeZoneOptions.map((tz) => (
+                  <option key={tz} value={tz}>
+                    {tz.replace(/_/g, " ")}
+                  </option>
+                ))}
+              </select>
+              <p className="mt-1.5 text-xs text-mist/70">
+                Detected automatically — change it if you&rsquo;re booking for
+                a different time zone.
+              </p>
             </div>
 
             <div>

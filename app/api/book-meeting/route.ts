@@ -13,12 +13,13 @@ export async function POST(request: Request) {
       service,
       preferredDate,
       preferredTime,
+      timeZone,
       message,
     } = data ?? {};
 
-    if (!name || !email || !preferredDate) {
+    if (!name || !email || !preferredDate || !timeZone) {
       return NextResponse.json(
-        { error: "Name, email, and preferred date are required." },
+        { error: "Name, email, preferred date, and time zone are required." },
         { status: 400 }
       );
     }
@@ -50,6 +51,7 @@ export async function POST(request: Request) {
       <p><strong>Service interested in:</strong> ${escapeHtml(serviceTitle)}</p>
       <p><strong>Preferred date:</strong> ${escapeHtml(preferredDate)}</p>
       <p><strong>Preferred time:</strong> ${escapeHtml(preferredTime || "—")}</p>
+      <p><strong>Time zone:</strong> ${escapeHtml(timeZone)}</p>
       <p><strong>Message:</strong></p>
       <p>${escapeHtml(message || "—").replace(/\n/g, "<br />")}</p>
     `;
