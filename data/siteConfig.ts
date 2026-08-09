@@ -25,11 +25,11 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: "Pixel Nox",
-  url: "https://pixelnox.com",
+  url: "https://pixelnox.site",
   tagline: "Precision-built software for teams that ship.",
   description:
     "Pixel Nox is a software product agency designing and engineering web, mobile, AI, and cloud systems for companies that need to move fast without breaking things.",
-  email: "hello@pixelnox.com",
+  email: "contact@pixelnox.site",
   phone: "+1 (415) 617-9097",
   address: "1001 S MAIN ST, STE 600, KALISPELL, MT 59901-1498, USA",
   social: [
