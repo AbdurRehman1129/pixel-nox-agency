@@ -11,7 +11,7 @@ import { siteConfig } from "@/data/siteConfig";
  * "Pixel Nox <notifications@pixelnox.com>" so you can send to any inbox,
  * including your real siteConfig.email.
  */
-const FROM_ADDRESS = "Pixel Nox <hello@pixelnox.site>";
+const FROM_ADDRESS = "Pixel Nox <noreply@pixelnox.site>";
 
 let resendClient: Resend | null = null;
 
