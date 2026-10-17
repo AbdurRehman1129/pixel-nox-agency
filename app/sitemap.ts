@@ -11,6 +11,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/terms-and-conditions`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${siteConfig.url}/refund-policy`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${siteConfig.url}/cookies-policy`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${siteConfig.url}/expense-tracker/home`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${siteConfig.url}/expense-tracker/privacy-policy`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${siteConfig.url}/expense-tracker/term-of-services`, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const serviceRoutes: MetadataRoute.Sitemap = services.map((service) => ({
